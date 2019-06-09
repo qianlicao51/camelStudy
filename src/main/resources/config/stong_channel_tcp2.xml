@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 路由 -->
+	<routeContext id="channelRouteTcp2" xmlns="http://camel.apache.org/schema/spring">
+
+		<!-- tcp 发送数据 -->
+		<!-- https://github.com/apache/camel/blob/master/components/camel-mina2/src/main/docs/mina2-component.adoc#netty-component -->
+		<route>
+			<!-- textline为true 需要换行符才能真确识别到数据 -->
+			<from uri="mina2:tcp://0.0.0.0:5666?textline=true" />
+			<!-- <process ref="tcpProcess" /> -->
+			<!-- <to uri="bean:myTCPOrderHandler?method=receive" /> -->
+			<to uri="bean:myTCPOrderHandler2" />
+			<to uri="stream:out" />
+		</route>
+
+		<!-- 路由可以分开写，写在一个文件也行 -->
+		<route>
+			<from uri="tcpReceiveServer" />
+			<to uri="bean:myTCPOrderHandler2" />
+		</route>
+
+		<!-- 测试timer --><!-- http://camel.apache.org/how-do-i-specify-time-period-in-a-human-friendly-syntax.html -->
+		<!-- timer://foo?fixedRate=true&period=1000 -->
+		<route>
+			<from uri="timer:foo?period=1h"></from>
+			<to uri="stream:out" />
+		</route>
+	</routeContext>
+
+
+</beans>
