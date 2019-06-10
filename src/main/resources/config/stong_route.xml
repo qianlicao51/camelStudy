@@ -10,6 +10,7 @@
 		<!-- 监听端口 -->
 		<routeContextRef ref="channelRouteTcp" />
 		<routeContextRef ref="channelRouteTcp2" />
+		<routeContextRef ref="sysHttp" />
 
 	</camelContext>
 

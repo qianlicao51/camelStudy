@@ -72,6 +72,12 @@
 			<artifactId>camel-connector</artifactId>
 			<version>${camel.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-jetty -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jetty</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
 
 		<!-- Camel /end -->
 		<dependency>
@@ -238,7 +244,7 @@
 						<archive>
 							<!-- 清单文件 -->
 							<manifest>
-								<mainClass>com.zhuzi.camel.App2</mainClass>
+								<mainClass>com.zhuzi.camel.App3</mainClass>
 								<addClasspath>true</addClasspath>
 								<useUniqueVersions>false</useUniqueVersions>
 								<classpathPrefix>lib/</classpathPrefix>

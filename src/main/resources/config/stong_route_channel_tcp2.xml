@@ -29,7 +29,7 @@
 		<!-- timer://foo?fixedRate=true&period=1000 -->
 		<!-- timer://foo?fixedRate=true&period=1000 -->
 		<route>
-			<from uri="timer:foo?period=5s" />
+			<from uri="timer:foo?period=5h" />
 			<to uri="bean:propGetHandle"></to>
 			<to uri="stream:out" />
 		</route>

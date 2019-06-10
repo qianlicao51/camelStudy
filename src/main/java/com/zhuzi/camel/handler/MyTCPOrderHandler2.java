@@ -19,16 +19,10 @@ public class MyTCPOrderHandler2 {
 	private static Logger log = LoggerFactory.getLogger(MyTCPOrderHandler2.class);
 	@Resource
 	YmFamService ymFamService;
-	
- 
 
 	@Handler
 	public void hadler(Exchange exchange) {
-		
-	 
-		
 		String body = exchange.getIn().getBody(String.class);
-
 		YmFamService ymFamService = (YmFamService) SpringContextUtil.getBean("ymFamService");
 		log.info("接受到的信息是-->{}", body);
 		YmFam ymFam = ymFamService.getById(8);

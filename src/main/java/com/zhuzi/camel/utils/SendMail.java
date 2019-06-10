@@ -1,6 +1,7 @@
 package com.zhuzi.camel.utils;
 
 import java.io.File;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,25 +9,30 @@ import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.io.Resources;
 
 public class SendMail {
 	public static void sendMail() throws Exception {
 		HtmlEmail email = new HtmlEmail();
-		email.setHostName("smtp.163.com");
+		email.setDebug(true);
+		email.setHostName(PropUtil.getMailKey("send.hostname"));
 		email.setSmtpPort(465);
 		// 用户名和密码为邮箱的账号和密码（不需要进行base64编码）
-		email.setAuthenticator(new DefaultAuthenticator("", ""));
+		email.setAuthenticator(new DefaultAuthenticator(PropUtil.getMailKey("send.user"), PropUtil.getMailKey("send.pwd")));
+		email.setSSLOnConnect(false);
+		email.setFrom(PropUtil.getMailKey("send.user"));
 		email.setSSLOnConnect(true);
-		email.setFrom("***@163.com");
+
 		email.setSubject("TestMail online PIC");
 		email.setCharset(StandardCharsets.UTF_8.name());
-		email.addTo("**********@163.com");
+		email.addTo(PropUtil.getMailKey("send.user"));
+		email.addTo("*****@163.com", "千里草");//邮箱和别名
 
 		// 内嵌图片
 		StringBuilder sBuilder = new StringBuilder("<font color='blue'>This is a test mail ... :-)</font>");
-		File picFile = Resources.getResourceAsFile("pic");
+		File picFile = Resources.getResourceAsFile("attachment");
 		Collection<File> listFiles = FileUtils.listFiles(picFile, null, true);
 		for (File file : listFiles) {
 			// TODO 位置1 和位置2 要设置为一致
@@ -38,7 +44,16 @@ public class SendMail {
 				sBuilder.append("<img src='cid:" + file.getName() + "' />");
 			}
 		}
-		email.setHtmlMsg(sBuilder.toString());
+		email.setHtmlMsg(sBuilder.toString() );
+
+		// 在线资源
+		EmailAttachment attachment = new EmailAttachment();
+		attachment.setURL(new URL("http://www.apache.org/images/asf_logo_wide.gif"));
+		attachment.setDisposition(EmailAttachment.ATTACHMENT);
+		attachment.setDescription("Apache logo");
+		attachment.setName("Apache logo");
+		email.attach(attachment);
+		
 		email.send();
 	}
 
