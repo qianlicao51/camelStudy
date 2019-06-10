@@ -10,6 +10,8 @@ public class PropertiesUtil {
 	@Value("${jdbc.url}")
 	private String url;
 
+	
+	
 	public String getPort() {
 		return port;
 	}
