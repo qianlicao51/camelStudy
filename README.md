@@ -45,4 +45,8 @@ Apache Camel Runner takes the following options
 ## Spring加载bean
 	https://blog.csdn.net/bailinbbc/article/details/76446594
 	
+## Spring获取配置文件
+	https://www.cnblogs.com/lishuaiqi/p/9707767.html
+	
+	
 

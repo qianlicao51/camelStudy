@@ -27,8 +27,10 @@
 
 		<!-- 测试timer --><!-- http://camel.apache.org/how-do-i-specify-time-period-in-a-human-friendly-syntax.html -->
 		<!-- timer://foo?fixedRate=true&period=1000 -->
+		<!-- timer://foo?fixedRate=true&period=1000 -->
 		<route>
-			<from uri="timer:foo?period=1h"></from>
+			<from uri="timer:foo?period=5s" />
+			<to uri="bean:propGetHandle"></to>
 			<to uri="stream:out" />
 		</route>
 	</routeContext>
