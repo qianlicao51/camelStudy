@@ -5,17 +5,17 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<routeContext id="sysHttp" xmlns="http://camel.apache.org/schema/spring">
-		<route>
-			<from uri="jetty:http://0.0.0.0/myapp/1.jpg?sessionSupport=true" />
-			<!-- <removeHeaders pattern="CamelHttp*" /> -->
-			<to uri="bean:httpHandle" />
-		</route>
+<routeContext id="sysHttp" xmlns="http://camel.apache.org/schema/spring">
+	<route>
+		<from uri="jetty:http://0.0.0.0/myapp/1.jpg?sessionSupport=true" />
+		<!-- <removeHeaders pattern="CamelHttp*" /> -->
+		<to uri="bean:httpHandle" />
+	</route>
 
-		<route>
-			<from uri="jetty:http://0.0.0.0:8080/app/1.jpg" />
-			<removeHeaders pattern="CamelHttp*" />
-			<to uri="bean:httpHandle2" />
-		</route>
-	</routeContext>
+	<route>
+		<from uri="jetty:http://0.0.0.0:8080/app/1.jpg" />
+		<removeHeaders pattern="CamelHttp*" />
+		<to uri="bean:httpHandle2" />
+	</route>
+</routeContext>
 </beans>
