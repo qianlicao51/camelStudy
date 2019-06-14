@@ -7,13 +7,13 @@
 
 <routeContext id="sysHttp" xmlns="http://camel.apache.org/schema/spring">
 	<route>
-		<from uri="jetty:http://0.0.0.0/myapp/1.jpg?sessionSupport=true" />
+		<from uri="jetty:http://0.0.0.0:8089/myapp/1.jpg?sessionSupport=true" />
 		<!-- <removeHeaders pattern="CamelHttp*" /> -->
 		<to uri="bean:httpHandle" />
 	</route>
 
 	<route>
-		<from uri="jetty:http://0.0.0.0:8080/app/1.jpg" />
+		<from uri="jetty:http://0.0.0.0:8081/app/1.jpg" />
 		<removeHeaders pattern="CamelHttp*" />
 		<to uri="bean:httpHandle2" />
 	</route>

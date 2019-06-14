@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Handler;
+import org.apache.camel.Message;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.zhuzi.camel.base.SpringContextUtil;
 import com.zhuzi.camel.bus.bean.YmFam;
 import com.zhuzi.camel.bus.service.YmFamService;
+import com.zhuzi.camel.utils.SysUtils;
 
 @Component("myTCPOrderHandler2")
 public class MyTCPOrderHandler2 {
@@ -22,6 +24,7 @@ public class MyTCPOrderHandler2 {
 
 	@Handler
 	public void hadler(Exchange exchange) {
+		Message in = exchange.getIn();
 		String body = exchange.getIn().getBody(String.class);
 		YmFamService ymFamService = (YmFamService) SpringContextUtil.getBean("ymFamService");
 		log.info("接受到的信息是-->{}", body);
@@ -29,7 +32,11 @@ public class MyTCPOrderHandler2 {
 		ToStringBuilder append = new ToStringBuilder(ymFam).append("id").append("name").append("createtime");
 		System.out.println(append.toString());
 		System.out.println(ymFam.toString());
-		exchange.getOut().setBody(ymFam.toString());
 
+		// 真正发送到的是 “3” “2”不会发送 “1” 会被覆盖
+		exchange.getOut().setBody(SysUtils.getDate() + ">1");
+		exchange.getOut().setBody(SysUtils.getDate() + ">3");
+
+		in.setBody(SysUtils.getDate() + "2");
 	}
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.zhuzi.camel</groupId>
@@ -43,13 +45,15 @@
 		</dependency>
 
 		<!-- Camel start -->
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-
 		</dependency>
+
+
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-stream</artifactId>
@@ -164,12 +168,14 @@
 
 	<build>
 		<!-- 打包命令 -->
-		<!-- mvn clean dependency:copy-dependencies -DoutputDirectory=target/lib package -->
+		<!-- mvn clean dependency:copy-dependencies -DoutputDirectory=target/lib 
+			package -->
 		<!-- <finalName>${artifactId}-${version}</finalName> 这是默认名 ，修改打包名称可以修改这个 -->
 		<!--<sourceDirectory>src/main/java</sourceDirectory> -->
 		<resources>
 
-			<!-- 解决打包时候Mapper.xml没进入 dao.class目录 (报错提示org.apache.ibatis.binding.BindingException: Invalid bound statement) -->
+			<!-- 解决打包时候Mapper.xml没进入 dao.class目录 (报错提示org.apache.ibatis.binding.BindingException: 
+				Invalid bound statement) -->
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
