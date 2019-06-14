@@ -36,7 +36,6 @@ public class MyTCPOrderHandler2 {
 		// 真正发送到的是 “3” “2”不会发送 “1” 会被覆盖
 		exchange.getOut().setBody(SysUtils.getDate() + ">1");
 		exchange.getOut().setBody(SysUtils.getDate() + ">3");
-
 		in.setBody(SysUtils.getDate() + "2");
 	}
 }

@@ -25,6 +25,8 @@
 			<to uri="bean:myTCPOrderHandler2" />
 		</route>
 
+		
+
 		<!-- 测试timer --><!-- http://camel.apache.org/how-do-i-specify-time-period-in-a-human-friendly-syntax.html -->
 		<!-- timer://foo?fixedRate=true&period=1000 -->
 		<!-- timer://foo?fixedRate=true&period=1000 -->

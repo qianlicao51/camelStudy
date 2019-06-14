@@ -19,7 +19,14 @@
 			<process ref="channelReviveProcessLast" />
 		</route>
 
-	
+		<!-- tcpReceive 9050 -->
+		<route id="tcpReceiveId">
+			<from uri="tcpReceive" />
+			<process ref="tcpReviveProcess" />
+			<to uri="bean:myTCPOrderHandler2" />
+			<process ref="tcpReviveProcessEnd" />
+		</route>
+
 	</routeContext>
 
 

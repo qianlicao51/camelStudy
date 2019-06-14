@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
 	<!-- 组件配置开始 -->
@@ -35,6 +36,19 @@
 				<property name="host" value="0.0.0.0" />
 				<property name="port" value="9000" />
 				<property name="textline" value="true" /> <!-- 大概是回车换行符作为发送结束 -->
+				<property name="encoding" value="UTF-8"></property>
+				<property name="maximumPoolSize" value="200"></property>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="tcpReceive" factory-bean="minaFactory" factory-method="createEndpoint">
+		<constructor-arg index="0">
+			<bean id="tcpServerConfig" class="org.apache.camel.component.mina2.Mina2Configuration">
+				<property name="protocol" value="tcp" />
+				<property name="host" value="0.0.0.0" />
+				<property name="port" value="9050" />
+				<property name="codec" ref="prefixedStringCodec" />
 				<property name="encoding" value="UTF-8"></property>
 				<property name="maximumPoolSize" value="200"></property>
 			</bean>
