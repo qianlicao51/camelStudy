@@ -10,9 +10,7 @@ public class PropUtil {
 	private static String MAIL_PROP = "prop/mail.properties";
 
 	public static String getMailKey(String key) {
-
 		return getPropFile(MAIL_PROP).getProperty(key);
-
 	}
 
 	private static Properties getPropFile(String path) {

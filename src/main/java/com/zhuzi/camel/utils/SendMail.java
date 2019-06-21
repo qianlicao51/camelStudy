@@ -22,13 +22,14 @@ public class SendMail {
 		// 用户名和密码为邮箱的账号和密码（不需要进行base64编码）
 		email.setAuthenticator(new DefaultAuthenticator(PropUtil.getMailKey("send.user"), PropUtil.getMailKey("send.pwd")));
 		email.setSSLOnConnect(false);
-		email.setFrom(PropUtil.getMailKey("send.user"));
+		String nick = javax.mail.internet.MimeUtility.encodeText("我的昵称");
+		email.setFrom(PropUtil.getMailKey("send.user"), "zhuzi");
 		email.setSSLOnConnect(true);
 
 		email.setSubject("TestMail online PIC");
 		email.setCharset(StandardCharsets.UTF_8.name());
-		email.addTo(PropUtil.getMailKey("send.user"));
-		email.addTo("*****@163.com", "千里草");//邮箱和别名
+		email.addTo("1792443323@qq.com", "千里草javasend");// 邮箱和别名
+		email.addTo("qianlicaozhu@163.com", "千里草javasend");// 邮箱和别名
 
 		// 内嵌图片
 		StringBuilder sBuilder = new StringBuilder("<font color='blue'>This is a test mail ... :-)</font>");
@@ -41,19 +42,21 @@ public class SendMail {
 			// common-io 工具包判断文件 是否 是图片后缀
 			if (FilenameUtils.isExtension(file.getName(), Arrays.asList("jpg", "png", "gif"))) {
 				// TODO 位置2 如果没有 <img src='cid 则作为附件发送
-				sBuilder.append("<img src='cid:" + file.getName() + "' />");
+				sBuilder.append("<a href='https://www.baidu.com' target='_blank' ><img src='cid:" + file.getName() + "' /></a>");
 			}
 		}
-		email.setHtmlMsg(sBuilder.toString() );
+		email.setHtmlMsg(sBuilder.toString());
 
 		// 在线资源
-		EmailAttachment attachment = new EmailAttachment();
-		attachment.setURL(new URL("http://www.apache.org/images/asf_logo_wide.gif"));
-		attachment.setDisposition(EmailAttachment.ATTACHMENT);
-		attachment.setDescription("Apache logo");
-		attachment.setName("Apache logo");
-		email.attach(attachment);
-		
+		/*
+		 * EmailAttachment attachment = new EmailAttachment();
+		 * attachment.setURL(new
+		 * URL("http://www.apache.org/images/asf_logo_wide.gif"));
+		 * attachment.setDisposition(EmailAttachment.ATTACHMENT);
+		 * attachment.setDescription("Apache logo"); attachment.setName(
+		 * "Apache logo"); email.attach(attachment);
+		 */
+
 		email.send();
 	}
 

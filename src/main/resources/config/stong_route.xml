@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
-	xsi:schemaLocation="
-	http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<camelContext xmlns="http://camel.apache.org/schema/spring" trace="true" id="FrontContext" useMDCLogging="true">
-		<camel:jmxAgent id="agent" createConnector="true" loadStatisticsEnabled="true" registryPort="1090" />
-
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="  http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<camelContext id="FrontContext" trace="true" useMDCLogging="true" xmlns="http://camel.apache.org/schema/spring">
+		<camel:jmxAgent createConnector="true" id="agent" loadStatisticsEnabled="true" registryPort="1090" />
 		<!-- 监听端口 -->
 		<routeContextRef ref="channelRouteTcp" />
 		<routeContextRef ref="channelRouteTcp2" />
 		<routeContextRef ref="sysHttp" />
-
 	</camelContext>
-
 </beans>
