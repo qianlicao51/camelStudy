@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Channels>
+	<Channel channel_id="0707KATDI001A,0707KATDI002A,0707KATDI003A,0707KATDI004A">
+		<Equ id="1" name="车牌识别" type="100510" operate="101404" ref="2" />
+		<Equ id="2" name="LED大屏" type="100502" param="${plate}" ref="4" />
+		<Equ id="4" name="红绿灯" type="100505" param="red" ref="3" />
+		<Equ id="3" name="监听电子车牌" operate="101407" ref="9" />
+		<Equ id="6" name="电子车牌信息返回" type="100501" param="${param}" ref="8" />
+		<Equ id="8" name="LED大屏" type="100502" param="电子车牌识别成功" />
+		<Equ id="9" name="LED大屏" type="100502" sleepTime="3" param="正在称重"
+			ref="10" />
+		<Equ id="10" name="地磅设备" operate="101409" ref="11" />
+		<Equ id="11" name="LED大屏" type="100502" param="地磅称重成功" />
+		<Equ id="13" name="接收金关二期" operateType="RECEIVE_JGEQ" ref="14"
+			operate="101412" />
+		<Equ id="14" name="LED大屏" type="100502" param="${ledContent}"
+			sendBus="1" ref="15" />
+		<Equ id="15" name="前栏杆" type="100506" sleepTime="1" param="up1"
+			operate="101403" />
+		<Equ id="16" name="接收前栏杆落杆信号" operateType="B_RAIL_FLAG" ref="17"
+			operate="101405" />
+		<Equ id="17" name="LED大屏" type="100502" param="欢迎光临" ref="20" />
+		<Equ id="20" name="红绿灯" type="100505" param="green" />
+	</Channel>
+	<Channel channel_id="0707KATDE001A,0707KATDE002A,0707KATDE003A,0707KATDE004A">
+		<Equ id="1" name="车牌识别" type="100510" operate="101404" ref="2" />
+		<Equ id="2" name="LED大屏" type="100502" param="${plate}" ref="4" />
+		<Equ id="4" name="红绿灯" type="100505" param="red" ref="18" />
+		<Equ id="18" name="后栏杆" type="100511" param="up2" operate="101401" />
+		<Equ id="19" name="接收后栏杆落杆信号" operateType="F_RAIL_FLAG" ref="3" />
+		<Equ id="3" name="监听电子车牌" operate="101407" ref="9" />
+		<Equ id="6" name="电子车牌信息返回" type="100501" param="${param}" ref="8" />
+		<Equ id="8" name="LED大屏" type="100502" param="电子车牌识别成功" />
+		<Equ id="9" name="LED大屏" type="100502" sleepTime="3" param="正在称重"
+			ref="10" />
+		<Equ id="10" name="地磅设备" operate="101409" ref="11" />
+		<Equ id="11" name="LED大屏" type="100502" param="地磅称重成功" />
+		<Equ id="13" name="接收金关二期" operateType="RECEIVE_JGEQ" ref="14" />
+		<Equ id="14" name="LED大屏" type="100502" param="${ledContent}"
+			sendBus="1" ref="15" />
+		<Equ id="15" name="前栏杆" type="100506" sleepTime="1" param="up1"
+			operate="101403" />
+		<Equ id="16" name="接收前栏杆落杆信号" operateType="B_RAIL_FLAG" ref="17"
+			operate="101405" />
+		<Equ id="17" name="LED大屏" type="100502" param="欢迎光临" ref="20" />
+		<Equ id="20" name="红绿灯" type="100505" param="green" />
+	</Channel>
+	<Channel
+		channel_id="0707KATDI001B,0707KATDI002B,0707KATDE001B,0707KATDE002B,0707KATDI003B,0707KATDI004B,0707KATDE003B,0707KATDE004B">
+		<Equ id="1" name="车牌识别" type="100510" operate="101404" ref="2" />
+		<Equ id="2" name="LED大屏" type="100502" param="${plate}" ref="4" />
+		<Equ id="4" name="红绿灯" type="100505" param="red" ref="3" />
+		<Equ id="3" name="监听电子车牌" operate="101407" />
+		<Equ id="6" name="电子车牌信息返回" type="100501" param="${param}" ref="8" />
+		<Equ id="8" name="LED大屏" type="100502" param="电子车牌识别成功" ref="12"
+			operate="101410" />
+		<Equ id="12" name="向金关二期发送" operateType="SEND_JGEQ" operate="101402" />
+		<Equ id="13" name="接收金关二期" operateType="RECEIVE_JGEQ" ref="14" />
+		<Equ id="14" name="LED大屏" type="100502" param="${ledContent}"
+			sendBus="1" ref="15" />
+		<Equ id="15" name="前栏杆" type="100506" sleepTime="1" param="up1"
+			operate="101403" />
+		<Equ id="16" name="接收前栏杆落杆信号" operateType="B_RAIL_FLAG" ref="17"
+			operate="101405" />
+		<Equ id="17" name="LED大屏" type="100502" param="欢迎光临" ref="20" />
+		<Equ id="20" name="红绿灯" type="100505" param="green" />
+	</Channel>
+</Channels>
