@@ -1,9 +1,9 @@
 package com.zhuzi.camel.bus.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zhuzi.camel.bus.bean.YmFam;
 import com.zhuzi.camel.bus.bean.YmFamExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface YmFamMapper {
     int countByExample(YmFamExample example);
