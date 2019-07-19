@@ -1,6 +1,11 @@
 package com.zhuzi.test;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 import com.zhuzi.camel.utils.TcpRequestUtils;
 
@@ -18,5 +23,11 @@ public class Demo01 {
 			}
 
 		}
+	}
+
+	@Test
+	public void testName() throws Exception {
+			Long.parseLong("", 16);
+			StringUtils.isNotBlank("");
 	}
 }

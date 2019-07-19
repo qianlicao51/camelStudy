@@ -1,10 +1,14 @@
 package com.zhuzi.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Test;
 
@@ -13,8 +17,10 @@ import com.zhuzi.camel.bus.bean.YmFam;
 public class ToString {
 
 	@Test
-	public void test() {
+	public void test() throws MalformedURLException, IOException {
 
+		FileUtils.copyURLToFile(new URL("http://apache.org/img/support-apache.jpg"), new File("d://1212.jpg"));
+		
 		YmFam ymFam = new YmFam();
 
 		ymFam.setAddid("zhuzi");

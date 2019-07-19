@@ -9,7 +9,7 @@ public class StringUtilsDemo {
 	@Test
 	public void testIsNull() throws Exception {
 		// " " 为空
-		// StringUtils.isNotBlank(""
+		StringUtils.isNotBlank("");
 
 	}
 }

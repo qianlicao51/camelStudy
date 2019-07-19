@@ -9,18 +9,11 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.json.JSONObject;
-
 public class TcpRequestUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(TcpRequestUtils.class); // 日志记录
-
-	private static String ip = "";
-	private static int port = 8080;
 	private static int timeOut = 500;
-
-	private static String ar_ip = "";
-	private static int ar_port = 8080;
+ 
 
 	@SuppressWarnings("finally")
 	public static String tcpPost(String ip, int port, String param) throws IOException {
