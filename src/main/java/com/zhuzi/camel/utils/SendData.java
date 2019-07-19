@@ -23,6 +23,28 @@ public class SendData {
 	 * @return
 	 */
 	@SuppressWarnings("finally")
+	public static String sendDataByTcpRetulNull(String ip, int port, String sendContext) {
+		Socket socket = null;
+		DataOutputStream dos = null;
+		String s = "";
+		try {
+			socket = new Socket(ip, port);
+			socket.setSoTimeout(10000);
+			byte[] msg = sendContext.getBytes("UTF-8");
+			dos = new DataOutputStream(socket.getOutputStream());
+			dos.write(msg);
+			dos.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 关闭连接和I/O,释放资源
+			IOUtils.closeQuietly(dos);
+			IOUtils.closeQuietly(socket);
+			return s;
+		}
+	}
+
+	@SuppressWarnings("finally")
 	public static String sendDataByTcp(String ip, int port, String sendContext) {
 		Socket socket = null;
 		InputStream in = null;
