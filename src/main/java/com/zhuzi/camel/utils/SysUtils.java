@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
  * 工具类
  */
 public class SysUtils {
+
 	/**
 	 *
 	 * @return YYYY-MM-dd HH:mm:ss
@@ -21,6 +22,10 @@ public class SysUtils {
 	 */
 	public static String getDateYmd() {
 		return new DateTime().toString("yyyy-MM-dd-HH-mm-ss");
+	}
+
+	public static String getDateYmD() {
+		return new DateTime().toString("yyyy-MM-dd");
 	}
 
 	public static void main(String[] args) {

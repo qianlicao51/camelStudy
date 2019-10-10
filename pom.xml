@@ -9,6 +9,8 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
+	
+		<java.version>1.8</java.version>
 		<!-- 文件拷贝时的编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -43,6 +45,13 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.11.3</version>
+		</dependency>
+
 		<!-- Camel start -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
@@ -157,6 +166,13 @@
 			<version>2.5</version>
 		</dependency>
 
+		<!-- ftp -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.6</version>
+		</dependency>
+
 		<!-- xmld读取 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -181,6 +197,13 @@
 			<version>1.0.3</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.20</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
