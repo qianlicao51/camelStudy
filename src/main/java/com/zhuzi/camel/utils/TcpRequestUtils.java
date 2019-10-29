@@ -62,4 +62,9 @@ public class TcpRequestUtils {
 			IOUtils.closeQuietly(socket);
 		}
 	}
+	public static void main(String[] args) throws IOException {
+		System.out.println("-------------");
+		tcpPostReNull("127.0.0.1", 9000, "senddae");
+		System.out.println("-------------");
+	}
 }

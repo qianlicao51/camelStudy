@@ -14,7 +14,13 @@ public class ChannelReviveProcess implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-        Message in = exchange.getIn();
+    	  Message in = exchange.getIn();
+		//接收到的数据IP
+		Object header = in.getHeader("CamelMina2RemoteAddress");
+		System.out.println(header.toString());
+    	
+    	///////////////////
+      
         String headbody = in.getBody(String.class);
         JSONObject obj = new JSONObject();
         try {

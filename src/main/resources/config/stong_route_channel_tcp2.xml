@@ -12,7 +12,7 @@
 		<!-- https://github.com/apache/camel/blob/master/components/camel-mina2/src/main/docs/mina2-component.adoc#netty-component -->
 		<route>
 			<!-- textline为true 需要换行符才能真确识别到数据 -->
-			<from uri="mina2:tcp://0.0.0.0:5666?textline=true" />
+			<from uri="mina2:tcp://0.0.0.0:5666?textline=false" />
 			<!-- <process ref="tcpProcess" /> -->
 			<!-- <to uri="bean:myTCPOrderHandler?method=receive" /> -->
 			<to uri="bean:myTCPOrderHandler2" />
