@@ -26,7 +26,7 @@
 		<druid.version>1.1.9</druid.version>
 		<mysql.version>5.1.9</mysql.version>
 		<joda-time.version>2.9.9</joda-time.version>
-		<fastjson.version>1.2.8</fastjson.version>
+		<fastjson.version>1.2.25</fastjson.version>
 		<spring.version>5.1.2.RELEASE</spring.version>
 		<easyexcel>1.1.2-beta5</easyexcel>
 	</properties>
