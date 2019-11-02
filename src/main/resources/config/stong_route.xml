@@ -5,7 +5,7 @@
 		<camel:jmxAgent createConnector="true" id="agent" loadStatisticsEnabled="true" registryPort="1090" />
 		<!-- 监听端口 -->
 		<routeContextRef ref="channelRouteTcp" />
-		<routeContextRef ref="channelRouteTcp2" />
+	<!-- <routeContextRef ref="channelRouteTcp2" /> -->
 		<routeContextRef ref="sysHttp" />
 	</camelContext>
 </beans>

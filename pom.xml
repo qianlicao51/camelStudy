@@ -9,7 +9,7 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-	
+
 		<java.version>1.8</java.version>
 		<!-- 文件拷贝时的编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,7 +58,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
 		</dependency>
 
 
@@ -240,30 +239,7 @@
 
 
 			<plugins>
-				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-				<!-- 拷贝依赖的jar到lib目录(如果不配置可以使用 如下命令 把 依赖的jar 拷贝出来) (虽然配置了，但是不知道为什么不生效) -->
-				<!-- mvn dependency:copy-dependencies -DoutputDirectory=target/lib -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>3.0.1</version>
-					<executions>
-						<execution>
-							<id>copy</id>
-							<phase>package</phase>
-							<goals>
-								<goal>copy-dependencies</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>${project.build.directory}/lib</outputDirectory>
-								<overWriteReleases>false</overWriteReleases>
-								<overWriteSnapshots>false</overWriteSnapshots>
-								<overWriteIfNewer>true</overWriteIfNewer>
-								<includeScope>compile</includeScope><!-- 拷贝是排除test 的依赖 这部分可以参考https://liugang594.iteye.com/blog/2093082 -->
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
+
 				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 				<!-- Step 1 设置编译版本 -->
 				<plugin>
@@ -291,7 +267,7 @@
 						<archive>
 							<!-- 清单文件 -->
 							<manifest>
-								<mainClass>com.zhuzi.camel.App5</mainClass>
+								<mainClass>com.zhuzi.camel.App3</mainClass>
 								<addClasspath>true</addClasspath>
 								<useUniqueVersions>false</useUniqueVersions>
 								<classpathPrefix>lib/</classpathPrefix>
@@ -313,11 +289,53 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>3.1.0</version>
+					<executions>
+						<execution>
+							<id>copy-resources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<resources>
+									<resource>
+										<directory>src/main/resources</directory>
+									</resource>
+								</resources>
+								<outputDirectory>${project.build.directory}/config/</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 					</configuration>
-				</plugin>
 
+				</plugin>
+				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<!-- 拷贝依赖的jar到lib目录(如果不配置可以使用 如下命令 把 依赖的jar 拷贝出来) (虽然配置了，但是不知道为什么不生效) -->
+				<!-- mvn dependency:copy-dependencies -DoutputDirectory=target/lib -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>3.0.1</version>
+					<executions>
+						<execution>
+							<id>copy</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-dependencies</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/lib</outputDirectory>
+								<overWriteReleases>true</overWriteReleases>
+								<overWriteSnapshots>true</overWriteSnapshots>
+								<overWriteIfNewer>true</overWriteIfNewer>
+								<includeScope>compile</includeScope><!-- 拷贝是排除test 的依赖 这部分可以参考https://liugang594.iteye.com/blog/2093082 -->
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 
 				<!-- 跳过测试 https://blog.csdn.net/arkblue/article/details/50974957 -->
 				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
