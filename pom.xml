@@ -235,115 +235,114 @@
 				<!-- <targetPath>${project.build.directory}/config</targetPath> -->
 			</resource>
 		</resources>
-		<pluginManagement>
+		<!-- 去掉此项就可以 mvn package 拷贝依赖 <pluginManagement> -->
 
 
-			<plugins>
+		<plugins>
 
-				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-				<!-- Step 1 设置编译版本 -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-					<!-- 编译时使用的JDK版本和UTF8编码 -->
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-						<encoding>UTF-8</encoding>
-						<showWarnings>true</showWarnings>
-						<skip>true</skip>
-					</configuration>
-				</plugin>
-				<!-- Step 1 end 设置编译版本/end -->
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- Step 1 设置编译版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<!-- 编译时使用的JDK版本和UTF8编码 -->
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+					<showWarnings>true</showWarnings>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<!-- Step 1 end 设置编译版本/end -->
 
-				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-				<!-- Step 2 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.2</version>
-					<configuration>
-						<archive>
-							<!-- 清单文件 -->
-							<manifest>
-								<mainClass>com.zhuzi.camel.App3</mainClass>
-								<addClasspath>true</addClasspath>
-								<useUniqueVersions>false</useUniqueVersions>
-								<classpathPrefix>lib/</classpathPrefix>
-							</manifest>
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- Step 2 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<archive>
+						<!-- 清单文件 -->
+						<manifest>
+							<mainClass>com.zhuzi.camel.App3</mainClass>
+							<addClasspath>true</addClasspath>
+							<useUniqueVersions>false</useUniqueVersions>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
 
-							<!-- 给清单文件添加键值对(配置文件外置) -->
-							<manifestEntries>
-								<Class-Path>config/</Class-Path>
-							</manifestEntries>
+						<!-- 给清单文件添加键值对(配置文件外置) -->
+						<manifestEntries>
+							<Class-Path>config/</Class-Path>
+						</manifestEntries>
 
-						</archive>
-					</configuration>
-				</plugin>
+					</archive>
+				</configuration>
+			</plugin>
 
 
-				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-				<!-- 解决资源文件的编码问题 -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.1.0</version>
-					<executions>
-						<execution>
-							<id>copy-resources</id>
-							<phase>package</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
-							<configuration>
-								<resources>
-									<resource>
-										<directory>src/main/resources</directory>
-									</resource>
-								</resources>
-								<outputDirectory>${project.build.directory}/config/</outputDirectory>
-							</configuration>
-						</execution>
-					</executions>
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- 解决资源文件的编码问题 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+								</resource>
+							</resources>
+							<outputDirectory>${project.build.directory}/config/</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
 
-					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
 
-				</plugin>
-				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-				<!-- 拷贝依赖的jar到lib目录(如果不配置可以使用 如下命令 把 依赖的jar 拷贝出来) (虽然配置了，但是不知道为什么不生效) -->
-				<!-- mvn dependency:copy-dependencies -DoutputDirectory=target/lib -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>3.0.1</version>
-					<executions>
-						<execution>
-							<id>copy</id>
-							<phase>package</phase>
-							<goals>
-								<goal>copy-dependencies</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>${project.build.directory}/lib</outputDirectory>
-								<overWriteReleases>true</overWriteReleases>
-								<overWriteSnapshots>true</overWriteSnapshots>
-								<overWriteIfNewer>true</overWriteIfNewer>
-								<includeScope>compile</includeScope><!-- 拷贝是排除test 的依赖 这部分可以参考https://liugang594.iteye.com/blog/2093082 -->
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
+			</plugin>
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- 拷贝依赖的jar到lib目录(如果不配置可以使用 如下命令 把 依赖的jar 拷贝出来) (虽然配置了，但是不知道为什么不生效) -->
+			<!-- mvn dependency:copy-dependencies -DoutputDirectory=target/lib -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<includeScope>compile</includeScope><!-- 拷贝是排除test 的依赖 这部分可以参考https://liugang594.iteye.com/blog/2093082 -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-				<!-- 跳过测试 https://blog.csdn.net/arkblue/article/details/50974957 -->
-				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-					<version>2.5</version> <configuration> <skip>true</skip> <skipTests>true</skipTests> 
-					</configuration> </plugin> -->
-			</plugins>
+			<!-- 跳过测试 https://blog.csdn.net/arkblue/article/details/50974957 -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.5</version> <configuration> <skip>true</skip> <skipTests>true</skipTests> 
+				</configuration> </plugin> -->
+		</plugins>
 
-		</pluginManagement>
 	</build>
 
 	<repositories>
