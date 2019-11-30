@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.zhuzi.camel</groupId>
@@ -207,14 +205,12 @@
 
 	<build>
 		<!-- 打包命令 -->
-		<!-- mvn clean dependency:copy-dependencies -DoutputDirectory=target/lib 
-			package -->
+		<!-- mvn clean dependency:copy-dependencies -DoutputDirectory=target/lib package -->
 		<!-- <finalName>${artifactId}-${version}</finalName> 这是默认名 ，修改打包名称可以修改这个 -->
 		<!--<sourceDirectory>src/main/java</sourceDirectory> -->
 		<resources>
 
-			<!-- 解决打包时候Mapper.xml没进入 dao.class目录 (报错提示org.apache.ibatis.binding.BindingException: 
-				Invalid bound statement) -->
+			<!-- 解决打包时候Mapper.xml没进入 dao.class目录 (报错提示org.apache.ibatis.binding.BindingException: Invalid bound statement) -->
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
@@ -225,11 +221,8 @@
 			<!-- 控制资源文件的拷贝 -->
 			<resource>
 				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-					<include>**/**</include>
-				</includes>
+
+				<!-- <includes> <include>**/*.properties</include> <include>**/*.xml</include> <include>**/**</include> </includes> -->
 				<!--<filtering>false</filtering> -->
 				<!-- && 在IDE中运行要把这个给注释掉，因为IDEA打包 默认路劲是 classes ,有下面行会把配置文件转移到其他目录 -->
 				<!-- <targetPath>${project.build.directory}/config</targetPath> -->
@@ -264,6 +257,10 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
 				<configuration>
+					<!--不打包资源文件 -->
+					<excludes>
+                        <exclude>*.**</exclude>
+                    </excludes>
 					<archive>
 						<!-- 清单文件 -->
 						<manifest>
@@ -297,6 +294,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
+
 							<resources>
 								<resource>
 									<directory>src/main/resources</directory>
@@ -338,9 +336,7 @@
 			</plugin>
 
 			<!-- 跳过测试 https://blog.csdn.net/arkblue/article/details/50974957 -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-				<version>2.5</version> <configuration> <skip>true</skip> <skipTests>true</skipTests> 
-				</configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> <version>2.5</version> <configuration> <skip>true</skip> <skipTests>true</skipTests> </configuration> </plugin> -->
 		</plugins>
 
 	</build>
